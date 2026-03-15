@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard-ctrl/
+Disallow: /portal-access/
+
+Sitemap: https://aditya-soni.vercel.app/sitemap.xml
