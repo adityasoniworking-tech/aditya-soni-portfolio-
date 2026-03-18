@@ -7,6 +7,7 @@ import { db } from "../lib/firebase";
 
 export default function Education() {
   const [data, setData] = useState({
+    showEducation: true,
     education: [
       {
         id: 1,
@@ -37,9 +38,11 @@ export default function Education() {
     const unsubscribe = onSnapshot(docRef, (docSnap) => {
       if (docSnap.exists()) {
         const fetchedData = docSnap.data();
-        if (fetchedData.education) {
-          setData(prev => ({ ...prev, education: fetchedData.education }));
-        }
+        setData(prev => ({
+          ...prev,
+          showEducation: fetchedData.showEducation !== false,
+          education: Array.isArray(fetchedData.education) ? fetchedData.education : prev.education
+        }));
       }
     }, (error) => {
       console.error("Error fetching Education data:", error);
@@ -47,6 +50,10 @@ export default function Education() {
 
     return () => unsubscribe();
   }, []);
+
+  if (data.showEducation === false) {
+    return null;
+  }
 
   return (
     <section id="education" style={{

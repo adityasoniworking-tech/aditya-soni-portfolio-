@@ -49,6 +49,30 @@ export default function AdminDashboard() {
       { id: 4, title: "Tools & Others", list: "GitHub, VS Code, Jupyter Notebook, Google Colab, PowerBI" },
       { id: 5, title: "Soft Skills", list: "Communication, Teamwork, Time Management, Problem Solving, Leadership" }
     ],
+    showEducation: true,
+    education: [
+      {
+        id: 1,
+        year: "2022 - 2026",
+        degree: "B.E. Computer Science Engineering",
+        institution: "Gujarat Technological University",
+        details: "R. N. G. PATEL INSTITUTE OF TECHNOLOGY (RNGPIT). Current CGPA: 8.56. Focus on Core CS subjects, Web Development, and Software Engineering."
+      },
+      {
+        id: 2,
+        year: "2020 - 2022",
+        degree: "Higher Secondary Education (Class XII)",
+        institution: "GS&HSEB",
+        details: "Completed with Science Stream. Developed strong foundation in Mathematics and Physics."
+      },
+      {
+        id: 3,
+        year: "2018 - 2020",
+        degree: "Secondary Education (Class X)",
+        institution: "GSEB",
+        details: "Foundation years focusing on broad academic excellence."
+      }
+    ],
     showTestimonials: true,
     testimonials: [
       {
@@ -149,6 +173,37 @@ export default function AdminDashboard() {
               }
             ];
           }
+
+          // Education defaults (if missing)
+          if (typeof fetchedData.showEducation === "undefined") {
+            fetchedData.showEducation = true;
+          }
+
+          if (!Array.isArray(fetchedData.education)) {
+            fetchedData.education = [
+              {
+                id: 1,
+                year: "2022 - 2026",
+                degree: "B.E. Computer Science Engineering",
+                institution: "Gujarat Technological University",
+                details: "R. N. G. PATEL INSTITUTE OF TECHNOLOGY (RNGPIT). Current CGPA: 8.56. Focus on Core CS subjects, Web Development, and Software Engineering."
+              },
+              {
+                id: 2,
+                year: "2020 - 2022",
+                degree: "Higher Secondary Education (Class XII)",
+                institution: "GS&HSEB",
+                details: "Completed with Science Stream. Developed strong foundation in Mathematics and Physics."
+              },
+              {
+                id: 3,
+                year: "2018 - 2020",
+                degree: "Secondary Education (Class X)",
+                institution: "GSEB",
+                details: "Foundation years focusing on broad academic excellence."
+              }
+            ];
+          }
           
           setData((prev) => ({ ...prev, ...fetchedData }));
         } else {
@@ -193,6 +248,28 @@ export default function AdminDashboard() {
     setData(prev => ({
       ...prev,
       skills: prev.skills.filter(s => s.id !== id)
+    }));
+  };
+
+  const handleEducationChange = (id, field, value) => {
+    setData(prev => ({
+      ...prev,
+      education: (prev.education || []).map(e => e.id === id ? { ...e, [field]: value } : e)
+    }));
+  };
+
+  const handleAddEducation = () => {
+    const newId = Date.now();
+    setData(prev => ({
+      ...prev,
+      education: [...(prev.education || []), { id: newId, year: "", degree: "New Degree", institution: "", details: "" }]
+    }));
+  };
+
+  const handleDeleteEducation = (id) => {
+    setData(prev => ({
+      ...prev,
+      education: (prev.education || []).filter(e => e.id !== id)
     }));
   };
 
@@ -319,6 +396,7 @@ export default function AdminDashboard() {
     { id: "hero", label: "Hero Content", icon: Home },
     { id: "about", label: "About & Stats", icon: User },
     { id: "skills", label: "Skills", icon: BookOpen },
+    { id: "education", label: "Education", icon: BookOpen },
     { id: "experience", label: "Work Experience", icon: BookOpen },
     { id: "projects", label: "Featured Projects", icon: BookOpen },
     { id: "services", label: "Services", icon: BookOpen },
@@ -625,6 +703,52 @@ export default function AdminDashboard() {
                     </div>
                   ))}
                   <button onClick={handleAddSkill} style={{ background: "rgba(255, 255, 255, 0.05)", color: "white", padding: "1.5rem", borderRadius: "16px", border: "2px dashed rgba(255, 255, 255, 0.2)", cursor: "pointer", fontWeight: "600", fontSize: "1rem", transition: "0.2s" }} onMouseOver={e=>e.currentTarget.style.background="rgba(255, 255, 255, 0.1)"} onMouseOut={e=>e.currentTarget.style.background="rgba(255, 255, 255, 0.05)"}>+ Add New Category</button>
+                </div>
+              )}
+
+              {activeTab === "education" && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+                  <div className="glass-panel" style={{ padding: "2rem", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <div>
+                      <h3 style={{ margin: "0", fontSize: "1.125rem", color: "var(--accent)" }}>Global Visibility</h3>
+                      <p style={{ margin: "0.25rem 0 0 0", fontSize: "0.875rem", color: "rgba(255,255,255,0.4)" }}>Show or hide the Education section on the homepage.</p>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", gap: "1rem", cursor: "pointer" }}>
+                      <span style={{ fontSize: "0.875rem", fontWeight: 600, color: data.showEducation ? "var(--primary)" : "rgba(255,255,255,0.4)" }}>{data.showEducation ? "VISIBLE" : "HIDDEN"}</span>
+                      <input type="checkbox" checked={data.showEducation !== false} onChange={(e) => setData(prev => ({...prev, showEducation: e.target.checked}))} style={{ width: "40px", height: "20px" }} />
+                    </label>
+                  </div>
+
+                  <button onClick={handleAddEducation} style={{ background: "rgba(255, 255, 255, 0.05)", color: "white", padding: "1.5rem", borderRadius: "16px", border: "2px dashed rgba(255, 255, 255, 0.2)", cursor: "pointer", fontWeight: "600", fontSize: "1rem", transition: "0.2s" }} onMouseOver={e=>e.currentTarget.style.background="rgba(255, 255, 255, 0.1)"} onMouseOut={e=>e.currentTarget.style.background="rgba(255, 255, 255, 0.05)"}>+ Add New Education</button>
+
+                  {data.education?.map((edu, index) => (
+                    <div key={edu.id} className="glass-panel" style={{ padding: "2rem", borderRadius: "16px", display: "flex", flexDirection: "column", gap: "1rem" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <h3 style={{ margin: "0", fontSize: "1.125rem", color: "var(--primary)" }}>Education {index + 1}</h3>
+                        <button onClick={() => handleDeleteEducation(edu.id)} style={{ background: "rgba(239, 68, 68, 0.15)", color: "#ef4444", border: "none", padding: "0.5rem 1rem", borderRadius: "8px", cursor: "pointer", fontWeight: 600, fontSize: "0.875rem", transition: "0.2s" }} onMouseOver={e=>e.currentTarget.style.background="rgba(239, 68, 68, 0.25)"} onMouseOut={e=>e.currentTarget.style.background="rgba(239, 68, 68, 0.15)"}>Delete</button>
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <label style={labelStyle}>Year</label>
+                        <input value={edu.year || ""} onChange={(e) => handleEducationChange(edu.id, "year", e.target.value)} style={inputStyle} placeholder="e.g. 2022 - 2026" />
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <label style={labelStyle}>Degree</label>
+                        <input value={edu.degree || ""} onChange={(e) => handleEducationChange(edu.id, "degree", e.target.value)} style={inputStyle} />
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <label style={labelStyle}>Institution</label>
+                        <input value={edu.institution || ""} onChange={(e) => handleEducationChange(edu.id, "institution", e.target.value)} style={inputStyle} />
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <label style={labelStyle}>Details</label>
+                        <textarea value={edu.details || ""} onChange={(e) => handleEducationChange(edu.id, "details", e.target.value)} style={{...inputStyle, minHeight: "100px"}} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
 
