@@ -16,7 +16,7 @@ import CursorFollower from "../components/CursorFollower";
 import WhatsAppButton from "../components/WhatsAppButton";
 
 export const metadata = {
-  metadataBase: new URL("https://aditya-soni.vercel.app"), // Replace with your actual domain later
+  metadataBase: new URL("https://aditya-soni-portfolio-xi.vercel.app"), // Replace with your actual domain later
   title: {
     default: "Aditya Soni | Full Stack Developer & UI/UX Designer",
     template: "%s | Aditya Soni"
@@ -28,7 +28,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://aditya-soni.vercel.app",
+    url: "https://aditya-soni-portfolio-xi.vercel.app",
     title: "Aditya Soni | Full Stack Developer & UI/UX Designer",
     description: "Creative Full Stack Developer specializing in premium animated web experiences.",
     siteName: "Aditya Soni Portfolio",

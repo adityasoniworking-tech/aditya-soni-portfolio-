@@ -3,4 +3,4 @@ Allow: /
 Disallow: /dashboard-ctrl/
 Disallow: /portal-access/
 
-Sitemap: https://aditya-soni.vercel.app/sitemap.xml
+Sitemap: https://aditya-soni-portfolio-xi.vercel.app/sitemap.xml

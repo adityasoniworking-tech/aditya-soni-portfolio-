@@ -75,11 +75,22 @@ export default function AboutMe() {
       margin: "0 auto",
       position: "relative"
     }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .about-stats { grid-template-columns: repeat(3, 1fr) !important; gap: 0.75rem !important; margin-top: 0.5rem !important; }
+          .about-stats article { padding: 1.25rem 0.5rem !important; }
+          .about-stats h3 { font-size: 1.5rem !important; }
+          .about-stats p { font-size: 0.65rem !important; }
+          .about-wrapper { gap: 0.75rem !important; }
+          .about-text { margin-bottom: 0 !important; }
+        }
+      `}</style>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
+        className="about-wrapper"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -87,7 +98,7 @@ export default function AboutMe() {
           alignItems: "center"
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+        <div className="about-text" style={{ textAlign: "center", marginBottom: "1.5rem" }}>
           <h2 style={{ fontSize: "clamp(3rem, 7vw, 4.5rem)", fontWeight: 800, marginBottom: "1.5rem" }}>
             About <span className="text-gradient-alt">Me</span>
           </h2>
@@ -103,7 +114,7 @@ export default function AboutMe() {
         </div>
 
         {/* Animated Stats Grid */}
-        <div style={{
+        <div className="about-stats" style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: "2rem",

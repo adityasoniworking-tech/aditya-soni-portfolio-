@@ -56,12 +56,40 @@ export default function Hero() {
       position: "relative",
       overflow: "hidden"
     }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-float-icon { display: none !important; }
+          .hero-content { padding-top: 4rem !important; }
+          .hero-content h1 {
+            font-size: clamp(2.8rem, 16vw, 4rem) !important;
+            margin-bottom: 0.4rem !important;
+            line-height: 1.05 !important;
+          }
+          .hero-content h2 {
+            font-size: clamp(1rem, 5vw, 1.4rem) !important;
+            margin-bottom: 0.75rem !important;
+          }
+          .hero-content p {
+            font-size: 0.9rem !important;
+            margin-bottom: 1.5rem !important;
+            line-height: 1.55 !important;
+          }
+          .hero-badge { margin-bottom: 0.75rem !important; }
+          .hero-badge span { font-size: 0.6rem !important; padding: 0.35rem 0.9rem !important; }
+          .hero-buttons { gap: 0.6rem !important; margin-top: 0 !important; }
+          .hero-buttons a { padding: 0.7rem 1.3rem !important; font-size: 0.82rem !important; }
+          .hero-social { gap: 0.75rem !important; margin-left: 0 !important; margin-top: 0.5rem !important; padding: 0.4rem !important; }
+          .hero-social a { width: 54px !important; height: 54px !important; }
+          .hero-social a svg { width: 28px !important; height: 28px !important; }
+        }
+      `}</style>
       {/* Hero Animated Background from globals.css */}
       <div className="hero-animated-bg" />
       <div className="grid-pattern" />
 
       {/* Website Logo */}
       <motion.div
+        className="hero-logo"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -108,6 +136,7 @@ export default function Hero() {
       ].map((item, i) => (
         <div 
           key={i}
+          className="hero-float-icon"
           style={{
             position: "absolute",
             top: item.top,
@@ -129,9 +158,10 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="show"
+        className="hero-content"
         style={{ textAlign: "center", maxWidth: "900px", zIndex: 1 }}
       >
-        <motion.div variants={itemVariants} style={{ marginBottom: "1.5rem" }}>
+        <motion.div variants={itemVariants} className="hero-badge" style={{ marginBottom: "1.5rem" }}>
           <span 
             style={{ 
               padding: "0.5rem 1.25rem", 
@@ -196,6 +226,7 @@ export default function Hero() {
 
         <motion.div 
           variants={itemVariants}
+          className="hero-buttons"
           style={{ display: "flex", gap: "1rem", justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginTop: "1rem" }}
         >
           <MagneticButton>
@@ -284,7 +315,7 @@ export default function Hero() {
             </MagneticButton>
           )}
 
-          <div style={{ 
+          <div className="hero-social" style={{ 
             display: "flex", 
             gap: "0.25rem", 
             background: "rgba(255, 255, 255, 0.02)", 

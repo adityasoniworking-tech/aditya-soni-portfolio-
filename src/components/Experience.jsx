@@ -40,7 +40,7 @@ export default function Experience() {
 
     return () => unsubscribe();
   }, []);
-  const experiences = data.experiences || [];
+  const experiences = [...(data.experiences || [])].reverse();
   return (
     <section id="experience" style={{
       padding: "1.5rem 2rem",

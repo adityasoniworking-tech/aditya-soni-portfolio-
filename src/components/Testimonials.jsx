@@ -142,7 +142,17 @@ export default function Testimonials() {
               <h4 style={{ fontSize: "1rem", fontWeight: 700, margin: "0 0 0.15rem 0", color: "white" }}>
                 {visibleTestimonials[currentIndex].author}
               </h4>
-              <p style={{ color: "var(--primary)", fontSize: "0.8rem", fontWeight: 600, margin: 0, textTransform: "uppercase", letterSpacing: "1px" }}>
+              <p style={{ 
+                color: "var(--primary)", 
+                fontSize: "0.8rem", 
+                fontWeight: 600, 
+                margin: 0, 
+                textTransform: "uppercase", 
+                letterSpacing: "1px",
+                overflowWrap: "anywhere",
+                wordBreak: "break-word",
+                lineHeight: 1.4
+              }}>
                 {visibleTestimonials[currentIndex].role}
               </p>
             </div>

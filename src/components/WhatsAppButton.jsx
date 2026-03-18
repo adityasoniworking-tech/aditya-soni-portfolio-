@@ -22,17 +22,31 @@ export default function WhatsAppButton() {
         y: 0,
         transition: { type: "spring", stiffness: 260, damping: 20 }
       }}
+      className="whatsapp-container"
       style={{
         position: "fixed",
-        bottom: "2rem",
-        right: "2rem",
         zIndex: 1000,
       }}
     >
+      <style>{`
+        .whatsapp-container {
+          bottom: 2rem;
+          right: 2rem;
+        }
+        @media (max-width: 768px) {
+          .whatsapp-container {
+            bottom: 1rem;
+            right: 1rem;
+          }
+          .whatsapp-fab { width: 50px !important; height: 50px !important; }
+          .whatsapp-fab svg { width: 22px !important; height: 22px !important; }
+        }
+      `}</style>
       <motion.a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        className="whatsapp-fab"
         whileHover={{ scale: 1.1, y: -5 }}
         whileTap={{ scale: 0.9 }}
         animate={{
