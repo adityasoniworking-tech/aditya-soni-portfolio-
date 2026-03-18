@@ -161,6 +161,7 @@ export default function AdminDashboard() {
     };
 
     checkAuthAndFetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   const handleLogout = () => {
@@ -326,7 +327,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#060608", color: "#e4e4e7", fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ display: "flex", height: "100vh", overflow: "hidden", background: "#060608", color: "#e4e4e7", fontFamily: "'Inter', sans-serif" }}>
       
       {/* Sidebar */}
       <aside style={{
@@ -335,7 +336,11 @@ export default function AdminDashboard() {
         borderRight: "1px solid rgba(255,255,255,0.05)",
         display: "flex",
         flexDirection: "column",
-        padding: "2rem 1.5rem"
+        padding: "2rem 1.5rem",
+        position: "sticky",
+        top: 0,
+        height: "100vh",
+        overflowY: "auto"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "3rem" }}>
           <div style={{ background: "var(--gradient-1)", padding: "0.5rem", borderRadius: "8px" }}>
@@ -380,11 +385,11 @@ export default function AdminDashboard() {
       </aside>
 
       {/* Main Content */}
-      <main style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+      <main style={{ flexGrow: 1, display: "flex", flexDirection: "column", height: "100vh", overflowY: "auto" }}>
         
         {/* Top Header */}
         <header style={{
-          height: "80px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 3rem", background: "rgba(10, 10, 14, 0.8)", backdropFilter: "blur(10px)", position: "sticky", top: 0, zIndex: 10
+          height: "80px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 3rem", background: "rgba(10, 10, 14, 0.8)", backdropFilter: "blur(10px)", position: "sticky", top: 0, zIndex: 10, flexShrink: 0
         }}>
           <div>
             <h2 style={{ fontSize: "1.25rem", margin: 0, fontWeight: 600 }}>{navItems.find(i => i.id === activeTab)?.label}</h2>
@@ -409,7 +414,7 @@ export default function AdminDashboard() {
         </header>
 
         {/* Form Content Area */}
-        <div style={{ padding: "3rem", maxWidth: "900px", width: "100%", overflowY: "auto" }}>
+        <div style={{ padding: "3rem", maxWidth: "900px", width: "100%" }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -435,7 +440,7 @@ export default function AdminDashboard() {
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                     <label style={labelStyle}>Resume Drive Link</label>
                     <input name="resumeLink" value={data.resumeLink || ""} onChange={handleChange} style={inputStyle} placeholder="https://drive.google.com/..." />
-                    <span style={hintStyle}>Link to your resume (e.g. Google Drive link). Ensure it's shared as 'Anyone with the link'.</span>
+                    <span style={hintStyle}>Link to your resume (e.g. Google Drive link). Ensure it&apos;s shared as &apos;Anyone with the link&apos;.</span>
                   </div>
                 </div>
               )}
