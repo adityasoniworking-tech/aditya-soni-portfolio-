@@ -147,7 +147,8 @@ export default function Hero() {
             animationDelay: item.delay,
             zIndex: 0,
             filter: "blur(1px)",
-            opacity: 0.2 // Slightly lower opacity for icons
+            opacity: 0.2, // Slightly lower opacity for icons
+            willChange: "transform"
           }}
         >
           <item.Icon size={item.size} />

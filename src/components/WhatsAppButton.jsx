@@ -71,7 +71,8 @@ export default function WhatsAppButton() {
           boxShadow: "0 10px 25px rgba(37, 211, 102, 0.4)",
           border: "2px solid rgba(255, 255, 255, 0.2)",
           cursor: "pointer",
-          position: "relative"
+          position: "relative",
+          willChange: "transform"
         }}
         title="Chat on WhatsApp"
       >
@@ -93,7 +94,8 @@ export default function WhatsAppButton() {
             inset: -5,
             borderRadius: "50%",
             background: "radial-gradient(circle, #25d366 30%, transparent 70%)",
-            zIndex: -1
+            zIndex: -1,
+            willChange: "transform, opacity"
           }}
         />
       </motion.a>

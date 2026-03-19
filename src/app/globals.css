@@ -88,27 +88,33 @@ a {
 
 .hero-animated-bg {
   position: absolute;
-  inset: 0;
+  inset: -50%;
   z-index: -3;
   background: linear-gradient(-45deg, #1e1b4b, #312e81, #0f172a, #4c1d95, #0f172a);
-  background-size: 300% 300%;
-  animation: customGradientMove 10s ease infinite;
+  background-size: 100% 100%;
+  animation: heroGradientMove 20s ease-in-out infinite alternate;
   opacity: 0.8;
+  will-change: transform;
 }
 
-@keyframes customGradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes heroGradientMove {
+  0% { transform: translate(-10%, -10%); }
+  100% { transform: translate(10%, 10%); }
 }
 
 .dev-gradient-bg {
   position: absolute;
-  inset: 0;
+  inset: -50%;
   z-index: -3;
   background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #020617);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
+  background-size: 100% 100%;
+  animation: devGradientMove 25s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes devGradientMove {
+  0% { transform: translate(-15%, -15%) rotate(0deg); }
+  100% { transform: translate(15%, 15%) rotate(5deg); }
 }
 
 .grid-pattern {
