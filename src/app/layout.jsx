@@ -17,6 +17,9 @@ import WhatsAppButton from "../components/WhatsAppButton";
 
 export const metadata = {
   metadataBase: new URL("https://aditya-soni-portfolio-xi.vercel.app"), // Replace with your actual domain later
+  verification: {
+    google: "xlTzS4rvMxOG6pdWEvNwbHjMejjZW4hmNIPNhg_C208",
+  },
   title: {
     default: "Aditya Soni | Full Stack Developer & UI/UX Designer",
     template: "%s | Aditya Soni"
