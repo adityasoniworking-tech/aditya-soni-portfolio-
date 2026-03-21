@@ -5,9 +5,10 @@ export default function sitemap() {
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 1,
     },
-    // Add other routes if they become non-dynamic
+    // The admin and login routes are intentionally excluded from the sitemap 
+    // to prevent search engine indexing of non-public management areas.
   ];
 }
